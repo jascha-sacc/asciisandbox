@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII art</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #999;
+            text-align: center;
+        }
+
+        button {
+            margin: 1em;
+            background-color: white;
+        }
+        #nameInput {
+            width: 20ch;
+        }
+
+        #artInput {
+            width: 80ch;
+            height: 42ch;
+            font-size: 2em;
+        }
+
+        #saveButton {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="save-button">SAVE</button>
+    <br>
+    <textarea id="artInput" spellcheck="false"></textarea>
+
+    <script>
+        // let randomHue = Math.round(Math.random() * 360);
+        // document.body.style.backgroundColor = "hsl(" + randomHue + ", 10%, 50%)";
+
+        function saveFileAs() {
+            if (promptFilename = prompt("Type your name", "")) {
+                var textBlob = new Blob([document.getElementById("artInput").value], {
+                    type: 'text/plain'
+                });
+                var downloadLink = document.createElement("a");
+                downloadLink.download = promptFilename;
+                downloadLink.innerHTML = "Download File";
+                downloadLink.href = window.URL.createObjectURL(textBlob);
+                downloadLink.click();
+                delete downloadLink;
+                delete textBlob;
+            }
+        }
+
+        document.getElementById("save-button").onclick = saveFileAs;
+    </script>
+</body>
+
+</html>
