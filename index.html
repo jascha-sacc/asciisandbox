@@ -45,7 +45,7 @@
                     type: 'text/plain'
                 });
                 var downloadLink = document.createElement("a");
-                downloadLink.download = promptFilename;
+                downloadLink.download = promptFilename + "'s ASCII art";
                 downloadLink.innerHTML = "Download File";
                 downloadLink.href = window.URL.createObjectURL(textBlob);
                 downloadLink.click();
